@@ -1,0 +1,46 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+generated_plugin_registrant.dart
+
+# Symbolication & obfuscation
+app.*.symbols
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# iOS
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+ios/Flutter/Generated.xcconfig
+ios/Pods/
+ios/Podfile.lock
+ios/Runner.xcworkspace/
+ios/build/
+DerivedData/
+
+# Android
+android/.gradle/
+android/captures/
+android/app/build/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/key.properties
+
+# Misc
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
