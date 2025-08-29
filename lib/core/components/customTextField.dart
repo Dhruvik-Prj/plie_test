@@ -78,8 +78,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
             focusNode: _focusNode,
             obscureText: widget.isPasswordField ? _obscureText : false,
 
-            // ✅ Only trigger when pressing enter/submit on keyboard
+            textInputAction: TextInputAction.done,
             onEditingComplete: widget.onTextChange,
+
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).unfocus();
+              widget.onTextChange(); // keep your callback
+            },
 
             inputFormatters: widget.inputFormatter,
             decoration: InputDecoration(
