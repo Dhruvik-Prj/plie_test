@@ -21,12 +21,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   String emailError = "";
   String passwordError = "";
 
-  @override
-  void initState() {
-    super.initState();
-    emailController.text = "testpracticaluser001@mailinator.com";
-    passwordController.text = "Test@123";
-  }
+  // if don't want to add manually credential for testing
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   emailController.text = "testpracticaluser001@mailinator.com";
+  //   passwordController.text = "Test@123";
+  // }
 
   @override
   void dispose() {
@@ -214,32 +215,69 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
 
                         const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Not a member?",
-                              style: AppTextStyles.robotoRegular.copyWith(
-                                color: const Color(0xFF000000),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                "Sign Up Here",
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                "Not a member?",
                                 style: AppTextStyles.robotoRegular.copyWith(
                                   color: const Color(0xFF000000),
                                 ),
                               ),
-                            ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Sign Up Here",
+                                  style: AppTextStyles.robotoRegular.copyWith(
+                                    color: const Color(0xFF000000),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          spacing: 10,
+                          children: [
+                            Expanded(child: const Divider(height: 40, thickness: 1)),
+                            Text("or Sign In with:"),
+                            Expanded(child: const Divider(height: 40,endIndent: 20, thickness: 1)),
                           ],
                         ),
-                        const Divider(height: 40, thickness: 1),
-                        const Text("or Sign In with:"),
-                        const SizedBox(height: 20),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text("Enter as Guest"),
+                        Row(
+                          spacing: 30,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: (){
+                                print("Google tap");
+                              },
+                              child: Image.asset("assets/images/google.png",height: 40,width: 40,),
+                            ),
+                            InkWell(
+                              onTap: (){
+                                print("Apple tap");
+                              },
+                              child: Image.asset("assets/images/apple-logo.png",height: 40,width: 40,),
+                            ),
+                            InkWell(
+                              onTap: (){
+                                print("Facebook tap");
+                              },
+                              child: Image.asset("assets/images/facebook.png",height: 40,width: 40,),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: const Text("Enter as Guest"),
+                          ),
                         ),
                       ],
                     ),
