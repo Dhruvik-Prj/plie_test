@@ -47,84 +47,104 @@ margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
           ),
           // Event Details
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Name
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0,right: 5.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          event.eventName ?? "",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Name
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            event.eventName ?? "",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
+                         InkWell(
+                           onTap: () {
+                           },
+                           child: Icon(
+                            Icons.arrow_forward,
+                            color: Colors.black,
+                                                 ),
+                         ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "${event.readableFromDate ?? ''}"
+                                "${event.readableToDate != null && event.readableToDate!.isNotEmpty ? " - ${event.readableToDate}" : ""}",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.green.shade700,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "${event.city ?? ''},"
+                              "${event.city != null && event.country!.isNotEmpty ? "${event.country}" : ""}",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 4),
+
+                  // Price
+                  Text(
+                    "€${event.eventPriceFrom ?? 0} - €${event.eventPriceTo ?? 0}",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey.shade800,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only( bottom: 10.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Wrap(
+                            spacing: 4,
+                            runSpacing: 4,
+                            children: event.danceStyles != null
+                                ? event.danceStyles!
+                                .map((ds) => TagChip(label: ds.dsName ?? ""))
+                                .toList()
+                                : [],
+                          ),
+                        ),
                        InkWell(
-                         onTap: () {
-                         },
+                         onTap: onFavouriteClick,
                          child: Icon(
-                          Icons.arrow_forward,
-                          color: Colors.black,
-                                               ),
-                       ),
-                    ],
+                           (event.isFavourite ?? false)
+                               ? Icons.favorite
+                               : Icons.favorite_border,
+                           color: Colors.green,
+                         ),
+                       )
+                      ],
+                    ),
                   ),
-                ),
-                Text(
-                  "${event.readableFromDate ?? ''}"
-                      "${event.readableToDate != null && event.readableToDate!.isNotEmpty ? " - ${event.readableToDate}" : ""}",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-
-                const SizedBox(height: 4),
-
-                // Price
-                Text(
-                  "€${event.eventPriceFrom ?? 0} - €${event.eventPriceTo ?? 0}",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey.shade800,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 5.0, bottom: 5.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Wrap(
-                          spacing: 4,
-                          runSpacing: 4,
-                          children: event.danceStyles != null
-                              ? event.danceStyles!
-                              .map((ds) => TagChip(label: ds.dsName ?? ""))
-                              .toList()
-                              : [],
-                        ),
-                      ),
-                     InkWell(
-                       onTap: onFavouriteClick,
-                       child: Icon(
-                         (event.isFavourite ?? false)
-                             ? Icons.favorite
-                             : Icons.favorite_border,
-                         color: Colors.green,
-                       ),
-                     )
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

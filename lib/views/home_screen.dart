@@ -10,11 +10,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 1;
 
-  final List<Widget> _screens = const [
-    ColoredBox(color: Colors.white),
+  final List<Widget> _screens =  [
+    Container(color: Colors.white,
+      child: Center(
+        child: Text("Search Screen"),
+      ),),
     EventListScreen(),
     FavouriteScreen(),
-    ColoredBox(color: Colors.white),
+    Container(color: Colors.white,
+    child: Center(
+      child: Text("Profile Screen"),
+    ),),
   ];
 
   void _onItemTapped(int index) {
